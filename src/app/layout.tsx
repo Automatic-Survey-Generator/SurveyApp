@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { cn } from "@/lib/utils"
 import "@/styles/globals.css";
 
+import NavBar from "@/components/structural/NavBar";
+
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -28,12 +30,7 @@ export default function RootLayout({
           fontSans.variable
         )} 
       >
-        <nav className="flex justify-center items-center gap-4">
-          <Link href="/">Home</Link>
-          <Link href="/editor">Form Editor</Link>
-          <Link href="/admin">Admin Panel</Link>
-          <Link href="/login">Login</Link>
-        </nav>
+        <NavBar />
         {children}
       </body>
     </html>
