@@ -73,3 +73,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.status(500).json({ error: 'Unable to connect to the database' });
   }
 }
+
+export async function getFormById(id: string) {
+  // const client = await connectToDatabase();
+  // const db = client.db();
+
+  // const formsCollection = db.collection('forms');
+  // const forms = await formsCollection.find({});
+
+  // TODO: use db
+  // return form
+
+  const field = {
+    id: "test",
+    label: "label",
+    type: "type",
+    required: true
+  }
+
+  return {id: "id_string",  title: "test_title",  fields: [field]}
+}
