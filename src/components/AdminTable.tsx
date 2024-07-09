@@ -8,23 +8,24 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-type Question = {
-  _id: String,
-  type: String,
-  questionText: String,
-  options: String,
-  required: Boolean
-}
+// type Question = {
+//   _id: String,
+//   type: String,
+//   questionText: String,
+//   options: String,
+//   required: Boolean
+// }
 
-type Form = {
-  _id: String,
-  title: String,
-  description: String,
-  questions: Question[],
-  createdAt: Date,
-}
+// type Form = {
+//   _id: String,
+//   title: String,
+//   description: String,
+//   questions: Question[],
+//   createdAt: Date,
+// }
 
-export default function AdminPage({formResults}: {formResults: Form[]}) {
+// export default function AdminPage({formResults}: {formResults: Form[]}) {
+export default function AdminPage({formResults}: {formResults}) {
   return (
     <Table>
       <TableCaption>List of Form Results</TableCaption>
