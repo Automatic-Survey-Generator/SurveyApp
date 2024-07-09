@@ -2,8 +2,10 @@ import { Button } from '@/components/ui/button'
 export default function About() {
   return (
     <>
-      <div>Index page</div>
-      <Button>ShadnCN UI button </Button>
+      <div className='jacques-francois-shadow-regular text-center text-[60px]'>
+        Generate Surveys with AI 
+      </div>
+      
     </>
   )
 }

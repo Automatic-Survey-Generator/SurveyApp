@@ -26,8 +26,9 @@ export default function RootLayout({
 
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
+          "min-h-screen bg-background font-sans antialiased ",
+          fontSans.variable,
+          "bg-gray-100 flex flex-col"
         )} 
       >
         <NavBar />

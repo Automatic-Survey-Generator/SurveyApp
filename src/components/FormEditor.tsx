@@ -2,12 +2,16 @@
 
 import { useAuth } from '@/hooks/useAuth'
 
-export default function FormEditor() {
+export default function FormEditor({formId}: {formId: string}) {
   const { loading } = useAuth()
 
   if (loading) {
     return <div>Loading...</div>
   }
 
-  return <h1>Form Editor Content</h1>
+  return (
+    <div className='bg-white h-full max-w-[700px] m-auto text-3xl text-center'>
+      {formId}
+    </div>
+  )
 }
