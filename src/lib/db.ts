@@ -13,23 +13,23 @@ if (!cached) {
 type ConnectionURI = string | undefined;
 
 export async function dbConnect(dbName?: string) {
-  let MONGODB_URI: ConnectionURI = process.env.NEXT_PUBLIC_MONGODB_URI;
+  let uri: ConnectionURI = process.env.NEXT_PUBLIC_MONGODB_URI;
 
   console.log('Starting db connection...')
   console.log("NODE_ENV: ", process.env.NODE_ENV)
 
   if (process.env.NODE_ENV === 'development') {
     // set URI for localhost development
-    MONGODB_URI = process.env.NEXT_PUBLIC_MONGODB_URI_TEST;
+    uri = process.env.NEXT_PUBLIC_MONGODB_URI_LOCAL;
   }
 
   if (dbName) {
-    MONGODB_URI = `${MONGODB_URI}/${dbName}`;
+    uri = `${uri}/${dbName}`;
   }
 
-  console.log('MONGODB_URI set: ', MONGODB_URI)
+  console.log('URI set: ', uri)
 
-  if (!MONGODB_URI) {
+  if (!uri) {
     throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
   }
 
@@ -48,7 +48,7 @@ export async function dbConnect(dbName?: string) {
       autoCreate: false,
     };
 
-    cached.promise = mongoose.connect(MONGODB_URI, options).then(
+    cached.promise = mongoose.connect(uri, options).then(
       () => {
         console.log("Connected to db!")
         registerModels();
