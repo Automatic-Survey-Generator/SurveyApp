@@ -1,6 +1,6 @@
 # SurveyApp
-Modern survey application
 
+Modern survey application
 
 ```
 pnpm i
