@@ -1,16 +1,14 @@
 import mongoose, { Document, Model, Schema } from 'mongoose'
-import Form from './Form'
-import Question from './Question'
 
 interface IAnswer {
-    question: (typeof Question)['_id']
+    question: mongoose.Types.ObjectId
     answerText?: string
     selectedOptions?: string[]
     attachment?: string
 }
 
 interface IResponse extends Document {
-    form: (typeof Form)['_id']
+    form: mongoose.Types.ObjectId
     answers: IAnswer[]
     submittedAt: Date
 }

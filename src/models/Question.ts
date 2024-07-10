@@ -1,20 +1,14 @@
 import mongoose, { Document, Model, Schema } from 'mongoose'
-import Form from './Form'
 
-interface IQuestion extends Document {
-    form: (typeof Form)['_id']
+export interface IQuestion extends Document {
     type: 'text' | 'radio' | 'checkbox' | 'attachment'
     questionText: string
     options?: string[]
     required: boolean
+    forms: mongoose.Types.ObjectId[]
 }
 
 const QuestionSchema: Schema<IQuestion> = new Schema({
-    form: {
-        type: Schema.Types.ObjectId,
-        ref: 'Form',
-        required: true
-    },
     type: {
         type: String,
         enum: ['text', 'radio', 'checkbox', 'attachment'],
@@ -28,10 +22,12 @@ const QuestionSchema: Schema<IQuestion> = new Schema({
     required: {
         type: Boolean,
         default: false
-    }
+    },
+    forms: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Form'
+    }]
 })
 
-const Question: Model<IQuestion> =
-    mongoose.models.Question ||
-    mongoose.model<IQuestion>('Question', QuestionSchema)
+const Question: Model<IQuestion> = mongoose.models.Question || mongoose.model<IQuestion>('Question', QuestionSchema)
 export default Question

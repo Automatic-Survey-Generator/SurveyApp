@@ -2,27 +2,12 @@
 
 import { useAuth } from '@/hooks/useAuth'
 import { useState, useEffect } from 'react';
-import { getFormResults } from '@/lib/api'; // We'll create this function
+import { getFormResults } from '@/lib/api';
+import { IForm } from '@/models/Form';
 import AdminTable from '@/components/AdminTable'
 
-type Question = {
-  _id: String,
-  type: String,
-  questionText: String,
-  options: String,
-  required: Boolean
-}
-
-type Form = {
-  _id: String,
-  title: String,
-  description: String,
-  questions: Question[],
-  createdAt: Date
-}
-
 export default function AdminPanel() {
-  const [formResults, setFormResults] = useState<Form[]>([]);
+  const [formResults, setFormResults] = useState<IForm[]>([]);
   const { loading } = useAuth()
 
   useEffect(() => {

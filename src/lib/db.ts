@@ -1,5 +1,6 @@
 
 import mongoose from 'mongoose';
+import { registerModels } from '@/models';
 
 // TODO: don't use globals in general
 // using global to preserve value during HMR
@@ -11,7 +12,7 @@ if (!cached) {
 
 type ConnectionURI = string | undefined;
 
-export async function dbConnect() {
+export async function dbConnect(dbName?: string) {
   let MONGODB_URI: ConnectionURI = process.env.NEXT_PUBLIC_MONGODB_URI;
 
   console.log('Starting db connection...')
@@ -22,6 +23,10 @@ export async function dbConnect() {
     MONGODB_URI = process.env.NEXT_PUBLIC_MONGODB_URI_TEST;
   }
 
+  if (dbName) {
+    MONGODB_URI = `${MONGODB_URI}/${dbName}`;
+  }
+
   console.log('MONGODB_URI set: ', MONGODB_URI)
 
   if (!MONGODB_URI) {
@@ -30,6 +35,7 @@ export async function dbConnect() {
 
   if (cached.conn) {
     console.log("Using cached DB connection!")
+    registerModels();
     return cached.conn;
   }
 
@@ -45,6 +51,7 @@ export async function dbConnect() {
     cached.promise = mongoose.connect(MONGODB_URI, options).then(
       () => {
         console.log("Connected to db!")
+        registerModels();
         return mongoose;
       },
       err => { console.error('Connection to DB error: \n', err); }

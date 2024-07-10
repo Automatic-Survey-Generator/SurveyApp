@@ -16,14 +16,14 @@ async function seedDatabase(options: {
         await clearDatabase();
     }
 
-    // Generate a pool of questions
+    // Generate questions
     const questions = [];
     for (let i = 0; i < questionCount; i++) {
         // @ts-ignore
         questions.push(await generateQuestion());
     }
 
-    // Generate forms and assign questions
+    // Generate forms + link questions
     for (let i = 0; i < formCount; i++) {
         const formQuestions = [];
         for (let j = 0; j < questionsPerForm; j++) {
@@ -37,7 +37,6 @@ async function seedDatabase(options: {
     await disconnectFromDatabase();
 }
 
-// Usage
 seedDatabase({
     databaseName: 'local_test_db',
     clearExisting: true,
