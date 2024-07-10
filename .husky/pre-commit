@@ -1,0 +1,5 @@
+pnpm run lint
+pnpm run build
+
+# Test hooks without commit
+# exit 1
