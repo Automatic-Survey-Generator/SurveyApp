@@ -12,8 +12,7 @@ import type { IBlockStructure, IAnswer } from '@/models/types'
 
 export default function FormViewer({ block_structures }: { block_structures: Array<IBlockStructure> }) {
 
-  // Should define a type for formData and form_structure when mongoDB is integrated
-  const [formData, setFormData] = useState<any>([])
+  const [formData, setFormData] = useState<IAnswer[]>([])
 
   const updateFormDataBlock = (dataBlock: IAnswer) => {
     // Update the dataBlock if it already exists in formData (based on block_id)
