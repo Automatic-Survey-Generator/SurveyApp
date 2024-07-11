@@ -2,7 +2,7 @@ import mongoose, { Document, Model, Schema } from 'mongoose'
 import { IForm } from './types'
 
 
-const FormSchema: Schema<IForm> = new Schema({
+const FormSchema = new Schema({
     version: { type: String, required: true },
     form_title: { type: String, required: true },
     form_description: { type: String, required: true },
@@ -23,5 +23,5 @@ const FormSchema: Schema<IForm> = new Schema({
     form_metadata: { type: Schema.Types.Mixed }
 })
 
-const Form: Model<IForm> = mongoose.models.Form || mongoose.model<IForm>('Form', FormSchema)
+const Form: Model<IForm & Document> = mongoose.models.Form || mongoose.model<IForm>('Form', FormSchema)
 export default Form

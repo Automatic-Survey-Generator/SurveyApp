@@ -6,47 +6,45 @@ import {
     SelectContent,
     SelectGroup,
     SelectItem,
-    SelectLabel,
     SelectTrigger,
     SelectValue
 } from '@/components/ui/select'
 
 import GenericBlock from './GenericBlock'
+import { IBlockStructure } from '@/models/types'
 
 export default function DropdownBlock({
     block_structure,
     updateFormDataBlock
 }: {
-    block_structure: any
+    block_structure: IBlockStructure
     updateFormDataBlock: any
 }) {
-    const [inputValue, setInputValue] = useState('')
 
-    const onInputChange = (e: any) => {
-        setInputValue(e.target.value)
+    const onInputChange = (option: string) => {
+        console.log('DropdownBlock option selected: ', option)
         updateFormDataBlock({
-            block_id: block_structure.block_id,
+            block_id: block_structure._id,
             block_type: block_structure.block_type,
-            answer: e.target.value
+            answer: option
         })
     }
 
     return (
         <GenericBlock>
-            <label className="block text-sm font-medium text-gray-700">{block_structure.description}</label>
+            <label className="block text-sm font-medium text-gray-700">{block_structure.label}</label>
 
-            <Select >
+            <Select onValueChange={onInputChange}>
                 <SelectTrigger className="mt-2">
-                    <SelectValue placeholder="Select a fruit" />
+                    <SelectValue placeholder="None selected" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent >
                     <SelectGroup>
-                        <SelectLabel>Fruits</SelectLabel>
-                        <SelectItem value="apple">Apple</SelectItem>
-                        <SelectItem value="banana">Banana</SelectItem>
-                        <SelectItem value="blueberry">Blueberry</SelectItem>
-                        <SelectItem value="grapes">Grapes</SelectItem>
-                        <SelectItem value="pineapple">Pineapple</SelectItem>
+                        {(block_structure.block_options as string[]).map((option, index) => (
+                            <SelectItem key={index} value={option} >
+                                {option}
+                            </SelectItem>
+                        ))}
                     </SelectGroup>
                 </SelectContent>
             </Select>

@@ -1,7 +1,6 @@
-import { Document } from 'mongoose'
 
 
-interface IUser extends Document {
+interface IUser {
     _id?: string
     name?: string
     email: string
@@ -13,28 +12,30 @@ interface IUser extends Document {
     password: String
 }
 
-interface IBlockStructure extends Document {
-    _id?: string
-    block_type: string
-    label: string
-    required: boolean
-    block_options: string[] | null
-    block_metadata: any
+interface IBlockStructure {
+    _id?: string;
+    block_type: string;
+    label: string;
+    required: boolean;
+    block_options: string[] | null;
+    block_metadata: any;
 }
 
-interface ICompletedForm extends Document {
+interface IAnswer {
+    block_id: string | IBlockStructure
+    block_type: string
+    answer: string | string[] | null
+}
+
+interface ICompletedForm {
     _id?: string
     user: string | IUser
     completed_at: Date
-    answers: {
-        block_id: string | IBlockStructure
-        block_type: string
-        answer: string | string[] | null
-    }[]
+    answers: IAnswer[]
 }
 
 
-interface IForm extends Document {
+interface IForm {
     _id?: string
     version: string
     form_title: string
@@ -50,4 +51,4 @@ interface IForm extends Document {
 
 
 
-export type { IBlockStructure, ICompletedForm, IForm, IUser }
+export type { IBlockStructure, ICompletedForm, IForm, IUser, IAnswer }

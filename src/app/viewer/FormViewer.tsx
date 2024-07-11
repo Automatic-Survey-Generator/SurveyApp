@@ -7,14 +7,15 @@ import HeaderBlock from './viewer-form-blocks/HeaderBlock'
 import ShortAnswer from './viewer-form-blocks/ShortAnswer'
 import DropdownBlock from './viewer-form-blocks/DropdownBlock'
 
+import type { IBlockStructure, IAnswer } from '@/models/types'
 
 
-export default function FormViewer({ form_structure }: { form_structure: Array<any> }) {
+export default function FormViewer({ block_structures }: { block_structures: Array<IBlockStructure> }) {
 
   // Should define a type for formData and form_structure when mongoDB is integrated
   const [formData, setFormData] = useState<any>([])
 
-  const updateFormDataBlock = (dataBlock) => {
+  const updateFormDataBlock = (dataBlock: IAnswer) => {
     // Update the dataBlock if it already exists in formData (based on block_id)
     // Otherwise, add the dataBlock to formData
     let updatedFormData = formData.map((block) => {
@@ -45,16 +46,16 @@ export default function FormViewer({ form_structure }: { form_structure: Array<a
 
       <HeaderBlock title="Form Title" description="This is a description of the form" />
 
-      <ShortAnswer block_structure={form_structure[0]} updateFormDataBlock={updateFormDataBlock} />
+      <ShortAnswer block_structure={block_structures[0]} updateFormDataBlock={updateFormDataBlock} />
 
-      <DropdownBlock block_structure={form_structure[2]} updateFormDataBlock={updateFormDataBlock} />
+      <DropdownBlock block_structure={block_structures[2]} updateFormDataBlock={updateFormDataBlock} />
 
       
       <Button
         type="submit"
-        className="mt-auto px-4 py-2 bg-primary text-white rounded-xl w-full  focus:outline-none focus:ring-2 "
+        className="mt-auto px-4 py-2 bg-primary text-black font-medium rounded-xl w-full  focus:outline-none focus:ring-2 "
       >
-        Submit
+        Submit Form
       </Button>
     </form>
   )

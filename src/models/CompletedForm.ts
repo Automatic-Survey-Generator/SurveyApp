@@ -2,7 +2,7 @@ import mongoose, { Document, Model, Schema } from 'mongoose'
 import type { ICompletedForm } from './types'
 
 
-const CompletedFormSchema: Schema<ICompletedForm> = new Schema({
+const CompletedFormSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
@@ -22,7 +22,7 @@ const CompletedFormSchema: Schema<ICompletedForm> = new Schema({
     }]
 })
 
-const CompletedForm: Model<ICompletedForm> =
+const CompletedForm: Model<ICompletedForm & Document> =
     mongoose.models.CompletedForm ||
     mongoose.model<ICompletedForm>('CompletedForm', CompletedFormSchema)
 export default CompletedForm
