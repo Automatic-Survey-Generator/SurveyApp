@@ -2,6 +2,7 @@ import { Document } from 'mongoose'
 
 
 interface IUser extends Document {
+    _id?: string
     name?: string
     email: string
     emailVerified?: Date
@@ -12,6 +13,7 @@ interface IUser extends Document {
 }
 
 interface IBlockStructure extends Document {
+    _id?: string
     block_type: string
     label: string
     required: boolean
@@ -20,6 +22,7 @@ interface IBlockStructure extends Document {
 }
 
 interface ICompletedForm extends Document {
+    _id?: string
     user: string | IUser
     completed_at: Date
     answers: {
@@ -31,6 +34,7 @@ interface ICompletedForm extends Document {
 
 
 interface IForm extends Document {
+    _id?: string
     version: string
     form_title: string
     form_description: string

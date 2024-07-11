@@ -5,7 +5,7 @@ import { dbConnect } from '@/lib/db';
 // import Form from '@/models/Form'; // You'll need to create this model
 
 export async function GET() {
-  await dbConnect('hello-db');
+  await dbConnect();
 
   try {
     const forms = await Form.find();

@@ -3,7 +3,7 @@ import { User, BlockStructure, Form, CompletedForm } from '@/models';
 import { connectToDatabase } from './dbConnect';
 
 
-await connectToDatabase('hello-db');
+await connectToDatabase('local_test_db');
 
 // Async function to add example data
 async function addExampleData() {

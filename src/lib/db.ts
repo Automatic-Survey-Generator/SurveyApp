@@ -11,7 +11,7 @@ if (!cached) {
 
 type ConnectionURI = string | undefined;
 
-export async function dbConnect(dbName?: string) {
+export async function dbConnect(dbName: string = "local_test_db") { //Added default dbName for testing
   let uri: ConnectionURI = process.env.NEXT_PUBLIC_MONGODB_URI;
 
   console.log('Starting db connection...')

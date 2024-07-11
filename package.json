@@ -11,7 +11,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db-init": "tsx mongodb/seedDatabase.ts",
+    "db-init": "tsx mongodb/add-data.ts",
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky"
   },
