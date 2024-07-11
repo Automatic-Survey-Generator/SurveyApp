@@ -1,4 +1,3 @@
-// src/components/NavBar.js
 'use client'
 
 import Link from 'next/link'
@@ -9,7 +8,6 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
@@ -65,7 +63,7 @@ export default function NavBar() {
                 </Sheet>
                 <Link
                     href="/"
-                    className="text-primary text-2xl font-bold uppercase"
+                    className="text-primary text-2xl font-bold uppercase mr-auto"
                 >
                     SURVEY CREATOR
                 </Link>
@@ -102,17 +100,17 @@ export default function NavBar() {
                 {/* see Figma Design */}
                 <Button
                     onClick={() => router.push('/signup')}
-                    className="hidden md:flex gap-3 justify-around group items-center bg-transparent border border-gray-400 rounded-full text-slate-700 hover:bg-white hover:border-gray-500"
+                    className="hidden md:flex gap-2 justify-around group items-center bg-transparent border border-gray-300 rounded-full text-slate-700 hover:bg-gray-400 px-3 hover:text-white transition-colors group"
                 >
                     <div>Sign Up</div>
-                    <div className="w-6 h-6 bg-primary rounded-full "></div>
+                    <div className="w-4 h-4 bg-primary rounded-full group-hover:border-orange-500/10 group-hover:border transition-colors" />
                 </Button>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button
                             variant="ghost"
                             size="icon"
-                            className="text-secondary-foreground"
+                            className="text-secondary-foreground rounded-full"
                         >
                             <UserRound className="h-5 w-6" />
                             <span className="sr-only">Toggle user menu</span>
