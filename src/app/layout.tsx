@@ -28,11 +28,13 @@ export default function RootLayout({
         className={cn(
           "min-h-screen bg-background font-sans antialiased ",
           fontSans.variable,
-          "bg-gray-100 flex flex-col"
+          "bg-gray-100"
         )} 
       >
         <NavBar />
-        {children}
+        <main className="mt-20">
+          {children}
+        </main>
       </body>
     </html>
   );

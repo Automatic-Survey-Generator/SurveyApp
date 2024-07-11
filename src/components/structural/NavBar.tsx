@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { UserRound, Menu, LogOut, LogIn, SunMoon } from 'lucide-react'
 import { Button } from '../ui/button'
 import {
@@ -13,8 +13,30 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { useState, useEffect } from 'react'
+import ResponsiveContainer from '../ui/ResponsiveContainer'
+
+const AuthLink = ({ href, children }) => (
+    <div className='flex items-center justify-center hover:bg-gray-50 bg-white border-[1px] border-gray-300 text-black px-4 py-2 rounded-3xl font-semibold'>
+        <Link href={href}>
+            {children}
+            <span className="ml-2 w-4 h-4 bg-orange-500 rounded-full inline-block"></span>
+        </Link>
+    </div>
+);
 
 function NavigationLinks({ onLinkClick = () => {} }) {
+    const path = usePathname()
+    const isLoginPage = path === '/login'
+    const isSignupPage = path === '/signup';
+
+    if (isLoginPage) {
+        return <AuthLink href="/signup">Sign Up</AuthLink>;
+
+    }
+    if (isSignupPage) {
+        return <AuthLink href="/login">Sign In</AuthLink>;
+
+    }
     return (
         <>
             <Link
@@ -116,7 +138,8 @@ export default function NavBar() {
 
     return (
         <>
-            <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
+            <header className="order-b border-[1px] fixed w-full z-20 top-0 start-0 antialiased bg-white">
+                <ResponsiveContainer className='py-4 shadow-md items-center flex gap-4'>
                 <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
                     <SheetTrigger asChild>
                         <Button
@@ -148,6 +171,7 @@ export default function NavBar() {
                     </div>
                 </nav>
                 <UserMenu isAuthenticated={isAuthenticated} />
+                </ResponsiveContainer>
             </header>
         </>
     )

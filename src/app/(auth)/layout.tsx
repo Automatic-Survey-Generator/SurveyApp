@@ -7,7 +7,7 @@ export default function AuthenticationLayout({
 }) {
     return (
       <div>
-        Authentication Layout
+        <div className="absolute inset-0 bg-[url('/assets/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] -z-10"></div>
         {children}
       </div>
     )

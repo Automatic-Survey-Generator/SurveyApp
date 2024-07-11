@@ -60,7 +60,7 @@ const router = useRouter()
     return (
         <section className="flex flex-col justify-center items-center min-h-screen relative">
             <ResponsiveContainer className="relative z-10 w-full max-w-md sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl jacques-francois-shadow-regular mb-8 text-center">
+                <h2 className="text-3xl sm:text-4xl md:text-6xl jacques-francois-shadow-regular mb-8 text-center">
                 Sign <span className='text-orange-400'>{isLoginPage ? 'In' : 'Up'}</span>
                 </h2>
 
