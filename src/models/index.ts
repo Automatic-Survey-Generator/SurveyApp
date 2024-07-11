@@ -1,14 +1,7 @@
-import mongoose from 'mongoose';
+import User from './User';
 import Form from './Form';
-import Question from './Question';
+import BlockStructure from './BlockStructure';
+import CompletedForm from './CompletedForm';
 
-export const Models = { Form, Question };
 
-export function registerModels() {
-  if (!mongoose.models.Form) {
-    mongoose.model('Form', Form.schema);
-  }
-  if (!mongoose.models.Question) {
-    mongoose.model('Question', Question.schema);
-  }
-}
+export { User, Form, BlockStructure, CompletedForm };

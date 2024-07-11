@@ -1,14 +1,14 @@
 "use server"
 
 import { dbConnect } from './db';
-import { Models } from '@/models';
-import { IForm } from '@/models/Form';
+import Models from '@/models';
+import { IForm } from '@/models/types';
 
 export const getFormResults = async (): Promise<IForm[]> => {
   return await dbConnect().then(async () => {
     try {
       const formResults = await Models.Form.find({})
-        .populate('questions')
+        .populate('block_structures')
         .lean()
         .exec();
 

@@ -1,28 +1,26 @@
 import mongoose, { Document, Model, Schema } from 'mongoose'
+import { IForm } from './types'
 
-export interface IForm extends Document {
-    title: string
-    description?: string
-    questions: mongoose.Types.ObjectId[]
-    createdAt: Date
-}
 
 const FormSchema: Schema<IForm> = new Schema({
-    title: {
-        type: String,
-        required: true
-    },
-    description: {
-        type: String
-    },
-    questions: [{
+    version: { type: String, required: true },
+    form_title: { type: String, required: true },
+    form_description: { type: String, required: true },
+    user_id: {
         type: Schema.Types.ObjectId,
-        ref: 'Question'
-    }],
-    createdAt: {
-        type: Date,
-        default: Date.now
-    }
+        ref: 'User',
+        required: true,
+        index: true
+    },
+    created_at: { type: Date, required: true, index: true },
+    active: { type: Boolean, required: true, index: true },
+    block_structures: [
+        { type: Schema.Types.ObjectId, ref: 'BlockStructure', index: true } // Questions
+    ],
+    completed_forms: [
+        { type: Schema.Types.ObjectId, ref: 'CompletedForm', index: true } // Answers
+    ],
+    form_metadata: { type: Schema.Types.Mixed }
 })
 
 const Form: Model<IForm> = mongoose.models.Form || mongoose.model<IForm>('Form', FormSchema)
