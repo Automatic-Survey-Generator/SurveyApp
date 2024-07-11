@@ -67,7 +67,7 @@ export default function NavBar() {
                 >
                     SURVEY CREATOR
                 </Link>
-                <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
+                <nav className="hidden flex-col gap-6 font-medium md:flex md:flex-row md:items-center md:gap-5 lg:gap-6">
                     <div className="flex gap-6">
                         <Link
                             href="/"
