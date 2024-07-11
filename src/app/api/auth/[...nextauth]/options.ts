@@ -5,28 +5,19 @@ import GoogleProvider from 'next-auth/providers/google'
 import bcrypt from 'bcryptjs'
 import { User } from '@/models'
 
-const googleClientId = process.env.GOOGLE_ID;
-const googleClientSecret = process.env.GOOGLE_SECRET;
-const githubClientId = process.env.GITHUB_ID;
-const githubClientSecret = process.env.GITHUB_SECRET;
-
-if (!googleClientId || !googleClientSecret) {
-    throw new Error('Missing Google OAuth environment variables');
-}
-
-if (!githubClientId || !githubClientSecret) {
-    throw new Error('Missing GitHub OAuth environment variables');
-}
-
 export const authOptions: AuthOptions = {
     providers: [
         GithubProvider({
-            clientId: githubClientId,
-            clientSecret: githubClientSecret
+            // @ts-ignore
+            clientId: process.env.GITHUB_ID,
+            // @ts-ignore
+            clientSecret: process.env.GITHUB_SECRET
         }),
         GoogleProvider({
-            clientId: googleClientId,
-            clientSecret: googleClientSecret,
+            // @ts-ignore
+            clientId: process.env.GOOGLE_ID,
+            // @ts-ignore
+            clientSecret: process.env.GOOGLE_SECRET,
         }),
         CredentialsProvider({
             name: "Credentials",
