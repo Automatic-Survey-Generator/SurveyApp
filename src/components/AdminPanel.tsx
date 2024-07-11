@@ -2,8 +2,7 @@
 
 import { useAuth } from '@/hooks/useAuth'
 import { useState, useEffect } from 'react';
-import { getFormResults } from '@/lib/api';
-import { IForm } from '@/models/Form';
+import { IForm } from '@/models/types';
 import AdminTable from '@/components/AdminTable'
 
 export default function AdminPanel() {
@@ -12,7 +11,9 @@ export default function AdminPanel() {
 
   useEffect(() => {
     async function fetchFormResults() {
-      const results = await getFormResults();
+      // API get request to /api/forms
+      const results =  (await fetch('/api/forms').then(res => res.json()) as IForm[]);
+      console.log(results);
       setFormResults(results);
     }
     if (!loading) {

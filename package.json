@@ -1,52 +1,49 @@
 {
-    "name": "next_self",
-    "version": "0.1.0",
-    "type": "module",
-    "private": true,
-    "engines": {
-        "node": "^20.15.1 || ^22.0.0"
-    },
-    "scripts": {
-        "dev": "next dev",
-        "build": "next build",
-        "start": "next start",
-        "lint": "next lint",
-        "db-init": "tsx mongodb/seedDatabase.ts",
-        "preinstall": "npx only-allow pnpm",
-        "prepare": "husky"
-    },
-    "dependencies": {
-        "@radix-ui/react-dialog": "^1.1.1",
-        "@radix-ui/react-dropdown-menu": "^2.1.1",
-        "@radix-ui/react-hover-card": "^1.1.1",
-        "@radix-ui/react-select": "^2.1.1",
-        "@radix-ui/react-slot": "^1.1.0",
-        "class-variance-authority": "^0.7.0",
-        "clsx": "^2.1.1",
-        "lucide-react": "^0.403.0",
-        "mongodb": "^6.8.0",
-        "mongoose": "^8.5.0",
-        "next": "14.2.4",
-        "react": "^18",
-        "react-dom": "^18",
-        "tailwind-merge": "^2.4.0",
-        "tailwind-scrollbar-hide": "^1.1.7",
-        "tailwindcss-animate": "^1.0.7"
-    },
-    "devDependencies": {
-        "@types/node": "^20.14.10",
-        "@types/react": "^18",
-        "@types/react-dom": "^18",
-        "autoprefixer": "^10.4.19",
-        "eslint": "^8",
-        "eslint-config-next": "14.2.4",
-        "eslint-config-prettier": "^9.1.0",
-        "husky": "^9.0.11",
-        "postcss": "^8.4.39",
-        "prettier": "3.3.2",
-        "tailwindcss": "^3.4.4",
-        "tsx": "^4.16.2",
-        "typescript": "^5.5.3"
-    },
-    "packageManager": "pnpm@9.5.0+sha512.140036830124618d624a2187b50d04289d5a087f326c9edfc0ccd733d76c4f52c3a313d4fc148794a2a9d81553016004e6742e8cf850670268a7387fc220c903"
+  "name": "next_self",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": "^20.15.1 || ^22.0.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db-init": "tsx mongodb/add-data.ts",
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@radix-ui/react-select": "^2.1.1",
+    "@radix-ui/react-slot": "^1.1.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.403.0",
+    "mongodb": "^6.8.0",
+    "mongoose": "^8.5.0",
+    "next": "14.2.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "tailwind-merge": "^2.4.0",
+    "tailwind-scrollbar-hide": "^1.1.7",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.4",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^9.0.11",
+    "postcss": "^8.4.39",
+    "prettier": "3.3.2",
+    "tailwindcss": "^3.4.4",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.3"
+  },
+  "packageManager": "pnpm@9.5.0+sha512.140036830124618d624a2187b50d04289d5a087f326c9edfc0ccd733d76c4f52c3a313d4fc148794a2a9d81553016004e6742e8cf850670268a7387fc220c903"
 }

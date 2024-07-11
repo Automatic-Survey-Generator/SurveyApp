@@ -7,10 +7,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-// import { IForm } from '@/models/Form';
+import { IForm } from '@/models/types';
 
-// export default function AdminPage({formResults}: {formResults: IForm[]}) {
-export default function AdminPage({formResults}: {formResults}) {
+export default function AdminPage({formResults}: {formResults: IForm[]}) {
   return (
     <Table>
       <TableCaption>List of Form Results</TableCaption>
@@ -23,10 +22,10 @@ export default function AdminPage({formResults}: {formResults}) {
       </TableHeader>
       <TableBody>
         {formResults.map((form) => (
-          <TableRow key={form._id}>
-            <TableCell>{form.title}</TableCell>
-            <TableCell>{form.description}</TableCell>
-            <TableCell>{form.createdAt}</TableCell>
+          <TableRow key={form._id as string}>
+            <TableCell>{form.form_title}</TableCell>
+            <TableCell>{form.form_description}</TableCell>
+            <TableCell>{new Date(form.created_at).toDateString()}</TableCell>
           </TableRow>
         ))}
       </TableBody>
