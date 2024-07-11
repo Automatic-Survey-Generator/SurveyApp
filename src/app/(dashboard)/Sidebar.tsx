@@ -77,7 +77,9 @@ function ListItem({
                     </li>
                 </Link>
             </HoverCardTrigger>
-            <HoverCardContent side="right">{form_title}</HoverCardContent>
+            <HoverCardContent side="right" className="md:hidden">
+                {form_title}
+            </HoverCardContent>
         </HoverCard>
     )
 }
