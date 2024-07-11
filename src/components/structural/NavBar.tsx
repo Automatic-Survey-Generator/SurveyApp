@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { UserRound, Menu, LogOut, SunMoon } from 'lucide-react'
+import { UserRound, Menu, LogOut, LogIn, SunMoon } from 'lucide-react'
 import { Button } from '../ui/button'
 import {
     DropdownMenu,
@@ -95,16 +95,6 @@ export default function NavBar() {
                         </Link>
                     </div>
                 </nav>
-                {/* show email address if authenticated */}
-                {/* Programatic routing because if user is loged in, button will become dropdown */}
-                {/* see Figma Design */}
-                <Button
-                    onClick={() => router.push('/signup')}
-                    className="hidden md:flex gap-2 justify-around group items-center bg-transparent border border-gray-300 rounded-full text-slate-700 hover:bg-gray-400 px-3 hover:text-white transition-colors group"
-                >
-                    <div>Sign Up</div>
-                    <div className="w-4 h-4 bg-primary rounded-full group-hover:border-orange-500/10 group-hover:border transition-colors" />
-                </Button>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button
@@ -122,9 +112,18 @@ export default function NavBar() {
                             Theme
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
+                        {/* Conditionally render logout/sign in, based on auth status
+                            I think the users profile picture could be enough to let them know they are logged in, instead of showing their email 
+                            (This could make it easier to be responsive as well, since the email could be too long to fit in the dropdown menu on smaller screens)
+                        */}
                         <DropdownMenuItem className="flex gap-2">
                             <LogOut className="h-4 w-4" />
-                            Logout
+                            Log out
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem className="flex gap-2">
+                            <LogIn className="h-4 w-4" />
+                            Sign in
                         </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
