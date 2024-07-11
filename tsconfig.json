@@ -17,6 +17,8 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "rootDirs": ["./src", "./mongodb"],  
+    "baseUrl": ".",  
     "plugins": [
       {
         "name": "next"

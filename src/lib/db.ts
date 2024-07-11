@@ -1,30 +1,70 @@
-import { MongoClient } from 'mongodb';
 
-if (!process.env.MONGODB_URI) {
-  throw new Error('Please add your Mongo URI to .env.local')
+import mongoose from 'mongoose';
+import { registerModels } from '@/models';
+
+// TODO: don't use globals in general
+// using global to preserve value during HMR
+let cached = global.mongoose;
+
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null };
 }
 
-const uri = process.env.MONGODB_URI
-const options = {}
+type ConnectionURI = string | undefined;
 
-// biome-ignore lint/suspicious/noImplicitAnyLet: <explanation>
-let client
-let clientPromise: Promise<MongoClient>
+export async function dbConnect(dbName?: string) {
+  let uri: ConnectionURI = process.env.NEXT_PUBLIC_MONGODB_URI;
 
-if (process.env.NODE_ENV === 'development') {
-  // In development mode, use a global variable so that the value
-  // is preserved across module reloads caused by HMR (Hot Module Replacement).
-  if (!global._mongoClientPromise) {
-    client = new MongoClient(uri, options)
-    global._mongoClientPromise = client.connect()
+  console.log('Starting db connection...')
+  console.log("NODE_ENV: ", process.env.NODE_ENV)
+
+  if (process.env.NODE_ENV === 'development') {
+    // set URI for localhost development
+    uri = process.env.NEXT_PUBLIC_MONGODB_URI_LOCAL;
   }
-  clientPromise = global._mongoClientPromise
-} else {
-  // In production mode, it's best to not use a global variable.
-  client = new MongoClient(uri, options)
-  clientPromise = client.connect()
-}
 
-// Export a module-scoped MongoClient promise. By doing this in a
-// separate module, the client can be shared across functions.
-export default clientPromise
+  if (dbName) {
+    uri = `${uri}/${dbName}`;
+  }
+
+  console.log('URI set: ', uri)
+
+  if (!uri) {
+    throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
+  }
+
+  if (cached.conn) {
+    console.log("Using cached DB connection!")
+    registerModels();
+    return cached.conn;
+  }
+
+  if (!cached.promise) {
+    const options = {
+      // don't use buffering, wait for actual live connection to be ready
+      // https://mongoosejs.com/docs/connections.html#buffering
+      bufferCommands: false,
+      // disable `autoCreate` since `bufferCommands` is false
+      autoCreate: false,
+    };
+
+    cached.promise = mongoose.connect(uri, options).then(
+      () => {
+        console.log("Connected to db!")
+        registerModels();
+        return mongoose;
+      },
+      err => { console.error('Connection to DB error: \n', err); }
+    );
+
+  }
+
+  try {
+    cached.conn = await cached.promise;
+  } catch (e) {
+    cached.promise = null;
+    throw e;
+  }
+
+  return cached.conn;
+}

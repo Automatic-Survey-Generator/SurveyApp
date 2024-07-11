@@ -1,15 +1,28 @@
 'use client'
 
 import { useAuth } from '@/hooks/useAuth'
+import { useState, useEffect } from 'react';
+import { getFormResults } from '@/lib/api';
+import { IForm } from '@/models/Form';
+import AdminTable from '@/components/AdminTable'
 
 export default function AdminPanel() {
-
-  // TODO: use auth data from session
+  const [formResults, setFormResults] = useState<IForm[]>([]);
   const { loading } = useAuth()
+
+  useEffect(() => {
+    async function fetchFormResults() {
+      const results = await getFormResults();
+      setFormResults(results);
+    }
+    if (!loading) {
+      fetchFormResults();
+    }
+  }, [loading]);
 
   if (loading) {
     return <div>Loading...</div>
   }
 
-  return <h1>Admin Panel Content</h1>
+  return <AdminTable formResults={formResults}/>
 }
