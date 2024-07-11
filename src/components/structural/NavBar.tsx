@@ -14,30 +14,34 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { useState, useEffect } from 'react'
 
-function NavigationLinks() {
+function NavigationLinks({ onLinkClick = () => {} }) {
     return (
         <>
             <Link
                 href="/"
                 className="text-muted-foreground hover:text-foreground"
+                onClick={onLinkClick}
             >
                 Home
             </Link>
             <Link
                 href="/builder/0"
                 className="text-muted-foreground hover:text-foreground"
+                onClick={onLinkClick}
             >
                 Editor
             </Link>
             <Link
                 href="/admin/0"
                 className="text-muted-foreground hover:text-foreground"
+                onClick={onLinkClick}
             >
                 Admin
             </Link>
             <Link
                 href="/viewer/0"
                 className="text-muted-foreground hover:text-foreground"
+                onClick={onLinkClick}
             >
                 Viewer
             </Link>
@@ -94,6 +98,7 @@ function UserMenu({ isAuthenticated }) {
 
 export default function NavBar() {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
+    const [isSheetOpen, setIsSheetOpen] = useState(false)
 
     useEffect(() => {
         // TODO Replace with actual authentication check logic
@@ -105,10 +110,14 @@ export default function NavBar() {
         checkAuthStatus()
     }, [])
 
+    const handleLinkClick = () => {
+        setIsSheetOpen(false)
+    }
+
     return (
         <>
             <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
-                <Sheet>
+                <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
                     <SheetTrigger asChild>
                         <Button
                             variant="ghost"
@@ -123,7 +132,7 @@ export default function NavBar() {
                     </SheetTrigger>
                     <SheetContent side="left">
                         <nav className="grid gap-6 text-lg font-medium mt-4">
-                            <NavigationLinks />
+                            <NavigationLinks onLinkClick={handleLinkClick} />
                         </nav>
                     </SheetContent>
                 </Sheet>
