@@ -2,7 +2,6 @@ import { NextResponse } from 'next/server'
 import {Form} from '@/models/';
 
 import { dbConnect } from '@/lib/db';
-// import Form from '@/models/Form'; // You'll need to create this model
 
 export async function GET() {
   await dbConnect();

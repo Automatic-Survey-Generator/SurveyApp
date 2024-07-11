@@ -2,9 +2,10 @@ import { useState } from "react"
 import { Input } from "@/components/ui/input"
 
 import GenericBlock from "./GenericBlock"
+import { IBlockStructure } from "@/models/types"
 
 
-export default function ShortAnswer({block_structure, updateFormDataBlock}: {block_structure: any, updateFormDataBlock: any}){
+export default function ShortAnswer({block_structure, updateFormDataBlock}: {block_structure: IBlockStructure, updateFormDataBlock: any}){
 
     const [inputValue, setInputValue] = useState('')
 
@@ -12,7 +13,7 @@ export default function ShortAnswer({block_structure, updateFormDataBlock}: {blo
     const onInputChange = (e: any) => {
         setInputValue(e.target.value)
         updateFormDataBlock({
-            block_id: block_structure.block_id,
+            block_id: block_structure._id,
             block_type: block_structure.block_type,
             answer: e.target.value
         })
@@ -21,7 +22,7 @@ export default function ShortAnswer({block_structure, updateFormDataBlock}: {blo
     return (
 
         <GenericBlock>
-            <label className="block text-sm font-medium text-gray-700">{block_structure.description}</label>
+            <label className="block text-sm font-medium text-gray-700">{block_structure.label}</label>
             <Input
                 type="text"
                 value={inputValue}

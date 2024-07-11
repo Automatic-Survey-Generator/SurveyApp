@@ -3,7 +3,7 @@ import mongoose, { Document, Model, Schema } from 'mongoose'
 import type { IBlockStructure } from './types'
 
 
-const BlockStructureSchema: Schema<IBlockStructure> = new Schema({
+const BlockStructureSchema = new Schema({
     block_type: { type: String, required: true },
     label: { type: String, required: true },
     required: { type: Boolean, required: true },
@@ -12,5 +12,5 @@ const BlockStructureSchema: Schema<IBlockStructure> = new Schema({
 })
 
 
-const BlockStructure: Model<IBlockStructure> = mongoose.models.BlockStructure || mongoose.model<IBlockStructure>('BlockStructure', BlockStructureSchema)
+const BlockStructure: Model<IBlockStructure & Document> = mongoose.models.BlockStructure || mongoose.model<IBlockStructure>('BlockStructure', BlockStructureSchema)
 export default BlockStructure
