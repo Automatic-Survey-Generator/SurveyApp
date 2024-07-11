@@ -9,7 +9,7 @@ export default function SidebarLayout({
         <section className="grow">
             {/* Include shared UI here e.g. sidebar */}
             <div className="h-full flex ">
-                <Sidebar className="w-[300px] bg-white " />
+                <Sidebar className="md:w-[300px] bg-white " />
                 <main className="grow">{children}</main>
             </div>
         </section>
