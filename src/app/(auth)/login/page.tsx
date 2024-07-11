@@ -1,5 +1,6 @@
+import AuthPage from "../AuthPage";
 
 
 export default function Login() {
-    return <div>Login page</div>
+    return <AuthPage isLoginPage />
 }

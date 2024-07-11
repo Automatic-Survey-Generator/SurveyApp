@@ -9,7 +9,8 @@ interface IUser extends Document {
     accounts: {
         provider: string
         providerAccountId: string
-    }
+    },
+    password: String
 }
 
 interface IBlockStructure extends Document {
