@@ -37,7 +37,7 @@ const router = useRouter()
             return
         }
         if (isLoginPage) {
-            signIn('credentials', { email, password, callbackUrl: '/dashboard' })
+            signIn('credentials', { email, password, callbackUrl: '/builder/0' })
         } else {
             const res = await fetch('/api/auth/signup', {
                 method: 'POST',
@@ -54,7 +54,7 @@ const router = useRouter()
     }
 
     const socialAuth = (provider) => {
-        signIn(provider, { callbackUrl: '/dashboard' })
+        signIn(provider, { callbackUrl: '/builder/0' })
     }
 
     return (
@@ -72,7 +72,7 @@ const router = useRouter()
                     <div>
                         <AuthButton
                             provider="google"
-                            callbackUrl="/dashboard"
+                            callbackUrl="/builder/0"
                             imageUrl="/assets/google.svg"
                             altText="google"
                             buttonText={`Continue with Google`}
@@ -80,7 +80,7 @@ const router = useRouter()
                         />
                         <AuthButton
                             provider="github"
-                            callbackUrl="/dashboard"
+                            callbackUrl="/builder/0"
                             imageUrl="/assets/github.svg"
                             altText="github"
                             buttonText={`Continue with GitHub`}
