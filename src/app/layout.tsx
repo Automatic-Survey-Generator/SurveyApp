@@ -34,7 +34,7 @@ export default async function RootLayout({
         )} 
       >
         <NavBar session={session} />
-        <main className="mt-32 md:mt-36">
+        <main className="pt-20 md:pt-20 h-full">
           {children}
         </main>
       </body>

@@ -6,7 +6,7 @@ export default function SidebarLayout({
     children: React.ReactNode
 }) {
     return (
-        <section className="grow">
+        <section className="h-full">
             {/* Include shared UI here e.g. sidebar */}
             <div className="h-full flex ">
                 <Sidebar className="md:w-[300px] bg-white " />
