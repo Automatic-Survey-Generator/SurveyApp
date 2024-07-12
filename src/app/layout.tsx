@@ -32,7 +32,7 @@ export default function RootLayout({
         )} 
       >
         <NavBar />
-        <main className="mt-20">
+        <main className="mt-32 md:mt-36">
           {children}
         </main>
       </body>
