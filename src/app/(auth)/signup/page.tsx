@@ -1,10 +1,5 @@
-
-
+import AuthPage from '../AuthPage'
 
 export default function Signup() {
-
-    return (
-        <div>Signup page</div>
-    )
+    return <AuthPage isLoginPage={false} />
 }
-

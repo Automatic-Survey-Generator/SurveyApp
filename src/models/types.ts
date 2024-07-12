@@ -8,7 +8,8 @@ interface IUser {
     accounts: {
         provider: string
         providerAccountId: string
-    }
+    },
+    password: String
 }
 
 interface IBlockStructure {
