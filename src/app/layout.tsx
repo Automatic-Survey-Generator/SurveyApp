@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils"
 import "@/styles/globals.css";
 
 import NavBar from "@/components/structural/NavBar";
+import { getServerSession } from "next-auth";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -16,11 +17,12 @@ export const metadata: Metadata = {
   description: "A Google Forms-like application built with Next.js",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession(); 
   return (
     <html lang="en">
 
@@ -31,7 +33,7 @@ export default function RootLayout({
           "bg-gray-100"
         )} 
       >
-        <NavBar />
+        <NavBar session={session} />
         <main className="mt-32 md:mt-36">
           {children}
         </main>

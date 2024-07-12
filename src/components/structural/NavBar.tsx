@@ -12,8 +12,9 @@ import {
     DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import ResponsiveContainer from '../ui/ResponsiveContainer'
+import { signOut } from 'next-auth/react'
 
 const AuthLink = ({ href, children }) => (
     <div className='flex items-center justify-center hover:bg-gray-50 bg-white border-[1px] border-gray-300 text-black px-4 py-2 rounded-3xl font-semibold'>
@@ -71,7 +72,7 @@ function NavigationLinks({ onLinkClick = () => {} }) {
     )
 }
 
-function UserMenu({ isAuthenticated }) {
+function UserMenu({ session }) {
     const router = useRouter()
 
     return (
@@ -92,11 +93,11 @@ function UserMenu({ isAuthenticated }) {
                     Theme
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                {isAuthenticated ? (
+                {session ? (
                     <DropdownMenuItem
                         className="flex gap-2"
                         onClick={() => {
-                            router.push('/logout')
+                            signOut({ callbackUrl: '/login' })
                         }}
                     >
                         <LogOut className="h-4 w-4" />
@@ -106,7 +107,7 @@ function UserMenu({ isAuthenticated }) {
                     <DropdownMenuItem
                         className="flex gap-2"
                         onClick={() => {
-                            router.push('/signin')
+                            router.push('/login')
                         }}
                     >
                         <LogIn className="h-4 w-4" />
@@ -118,19 +119,9 @@ function UserMenu({ isAuthenticated }) {
     )
 }
 
-export default function NavBar() {
-    const [isAuthenticated, setIsAuthenticated] = useState(false)
+export default function NavBar({ session }) {
     const [isSheetOpen, setIsSheetOpen] = useState(false)
 
-    useEffect(() => {
-        // TODO Replace with actual authentication check logic
-        const checkAuthStatus = async () => {
-            const authenticated = await fakeAuthCheck()
-            setIsAuthenticated(authenticated as boolean)
-        }
-
-        checkAuthStatus()
-    }, [])
 
     const handleLinkClick = () => {
         setIsSheetOpen(false)
@@ -170,14 +161,9 @@ export default function NavBar() {
                         <NavigationLinks />
                     </div>
                 </nav>
-                <UserMenu isAuthenticated={isAuthenticated} />
+                <UserMenu session={session} />
                 </ResponsiveContainer>
             </header>
         </>
     )
-}
-
-// TODO Replace with actual authentication check
-const fakeAuthCheck = async () => {
-    return new Promise((resolve) => setTimeout(() => resolve(true)))
 }
