@@ -10,12 +10,11 @@ const StatusBadge: React.FC<{ status: Status }> = ({ status }) => {
             <span
                 className={cn(
                     'inline-flex items-center rounded-full px-2 py-1 text-xs font-medium  ring-1 ring-inset',
-                    status === Status.draft &&
-                        'bg-blue-50 text-blue-700 ring-blue-600/20',
-                    status === Status.active &&
-                        'bg-green-50 text-green-700 ring-green-600/20',
-                    status === Status.ended &&
-                        'bg-gray-50 text-gray-700 ring-gray-600/20'
+                    {                   
+                        'bg-blue-50 text-blue-700 ring-blue-600/20' :  status === Status.draft,
+                        'bg-green-50 text-green-700 ring-green-600/20' : status === Status.active,
+                        'bg-gray-50 text-gray-700 ring-gray-600/20' : status === Status.ended,
+                    }
                 )}
             >
                 {status}
