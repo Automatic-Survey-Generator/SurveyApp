@@ -1,6 +1,6 @@
 'use client'
 
-import FormEditor from '@/components/FormEditor'
+import FormEditor from '../FormEditor'
 import { useParams } from 'next/navigation'
 
 
