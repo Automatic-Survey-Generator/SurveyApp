@@ -12,9 +12,20 @@ interface IUser {
     password: String
 }
 
+enum BlockTypes {
+    ShortAnswer = "ShortAnswer",
+    LongAnswer = "LongAnswer",
+    Options = "Options",
+    Checkboxes = "Checkboxes",
+    Dropdown = "Dropdown",
+    Date = "Date",
+    Time = "Time",
+    FileUpload = "FileUpload"
+}
+
 interface IBlockStructure {
     _id?: string;
-    block_type: string;
+    block_type: BlockTypes
     label: string;
     required: boolean;
     block_options: string[] | null;
@@ -35,14 +46,20 @@ interface ICompletedForm {
 }
 
 
+enum Status {
+    draft = "draft",
+    active = "active",
+    ended = "ended"
+}
+
 interface IForm {
     _id?: string
     version: string
-    form_title: string
-    form_description: string
+    title: string
+    description: string
     user_id: string | IUser
     created_at: Date
-    active: boolean
+    status:  Status
     block_structures: (string | IBlockStructure)[]
     completed_forms: (string | ICompletedForm)[]
     form_metadata: any
@@ -50,5 +67,5 @@ interface IForm {
 
 
 
-
 export type { IBlockStructure, ICompletedForm, IForm, IUser, IAnswer }
+export { Status, BlockTypes }

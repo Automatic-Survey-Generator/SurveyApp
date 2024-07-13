@@ -10,12 +10,12 @@ export default function AdminPanel() {
   const { loading } = useAuth()
 
   useEffect(() => {
-    async function fetchFormResults() {
-      // API get request to /api/forms
+    async function fetchFormResults() {     // API get request to /api/forms
       const results =  (await fetch('/api/forms').then(res => res.json()) as IForm[]);
       console.log(results);
       setFormResults(results);
     }
+    
     if (!loading) {
       fetchFormResults();
     }

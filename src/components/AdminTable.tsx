@@ -23,8 +23,8 @@ export default function AdminPage({formResults}: {formResults: IForm[]}) {
       <TableBody>
         {formResults.map((form) => (
           <TableRow key={form._id as string}>
-            <TableCell>{form.form_title}</TableCell>
-            <TableCell>{form.form_description}</TableCell>
+            <TableCell>{form.title}</TableCell>
+            <TableCell>{form.description}</TableCell>
             <TableCell>{new Date(form.created_at).toDateString()}</TableCell>
           </TableRow>
         ))}
