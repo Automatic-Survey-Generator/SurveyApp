@@ -4,8 +4,8 @@ import { IForm } from './types'
 
 const FormSchema = new Schema({
     version: { type: String, required: true },
-    form_title: { type: String, required: true },
-    form_description: { type: String, required: true },
+    title: { type: String, required: true },
+    description: { type: String, required: true },
     user_id: {
         type: Schema.Types.ObjectId,
         ref: 'User',
@@ -13,7 +13,7 @@ const FormSchema = new Schema({
         index: true
     },
     created_at: { type: Date, required: true, index: true },
-    active: { type: Boolean, required: true, index: true },
+    status: { type: String, required: true, index: true },
     block_structures: [
         { type: Schema.Types.ObjectId, ref: 'BlockStructure', index: true } // Questions
     ],

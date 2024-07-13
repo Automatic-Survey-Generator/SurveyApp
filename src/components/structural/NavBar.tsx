@@ -68,6 +68,13 @@ function NavigationLinks({ onLinkClick = () => {} }) {
             >
                 Viewer
             </Link>
+            <Link
+                href="/dashboard"
+                className="text-muted-foreground hover:text-foreground"
+                onClick={onLinkClick}
+            >
+                Dashboard
+            </Link>
         </>
     )
 }
