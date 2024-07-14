@@ -76,7 +76,7 @@ function EmptyFormList({handleNewFormCreation}:{handleNewFormCreation: () => voi
     return  (
         <div className='h-52 flex justify-center items-center'>
             <div className='flex flex-col justify-center items-center gap-3'>
-                <div className='font-bold text-center text-sm text-gray-400'> You haven't created any Forms yet </div>
+                <div className='font-bold text-center text-sm text-gray-400'> You have not created any Forms yet </div>
                 <Button onClick={() => handleNewFormCreation()} className="py-0 mx-auto text-black">
                     <Plus className="mr-2 h-5 w-5" />
                     New Form 
