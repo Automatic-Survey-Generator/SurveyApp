@@ -1,5 +1,11 @@
+"use client";
+
+
 import React from 'react'
+import Link from 'next/link'
+
 import { Button } from '@/components/ui/button'
+import { Plus } from 'lucide-react'
 import { Status } from '@/models/types' // Importing the Status enum from the types file
 import type { IForm } from '@/models/types' // Importing the Form interface from the types file
 import { cn } from '@/lib/utils'
@@ -40,19 +46,25 @@ function FormCard({ form }: { form: IForm }) {
                 </div>
                 <div className="self-end">
                     {form.status === Status.draft && (
-                        <Button className="text-xs font-normal h-6 text-black">
-                            Edit
-                        </Button>
+                         <Link href={'/builder/' + form._id}>
+                            <Button className="text-xs font-normal h-6 text-black">
+                                Edit
+                            </Button>
+                        </Link>
                     )}
                     {form.status === Status.active && (
-                        <Button className="text-xs font-normal h-6 text-black">
-                            Review
-                        </Button>
+                         <Link href={'/admin/' + form._id}>
+                            <Button className="text-xs font-normal h-6 text-black">
+                                Review
+                            </Button>
+                        </Link>
                     )}
                     {form.status === Status.ended && (
-                        <Button className="text-xs font-normal h-6 text-black">
-                            Review
-                        </Button>
+                        <Link href={'/admin/' + form._id}>
+                            <Button className="text-xs font-normal h-6 text-black">
+                                Review
+                            </Button>
+                        </Link>
                     )}
                 </div>
             </div>
@@ -60,16 +72,36 @@ function FormCard({ form }: { form: IForm }) {
     )
 }
 
-export default function FormList({ forms }: { forms: IForm[] }) {
+function EmptyFormList({handleNewFormCreation}:{handleNewFormCreation: () => void }){
+    return  (
+        <div className='h-52 flex justify-center items-center'>
+            <div className='flex flex-col justify-center items-center gap-3'>
+                <div className='font-bold text-center text-sm text-gray-400'> You haven't created any Forms yet </div>
+                <Button onClick={() => handleNewFormCreation()} className="py-0 mx-auto text-black">
+                    <Plus className="mr-2 h-5 w-5" />
+                    New Form 
+                </Button>
+            </div>
+        </div>
+    )
+}
+
+export default function FormList({ forms, handleNewFormCreation }: { forms: IForm[], handleNewFormCreation: () => void }) {
+
     return (
         <div className="pt-10">
             <h2 className="py-6 font-bold text-gray-800">My Forms</h2>
+            { forms.length === 0 &&
+                <EmptyFormList handleNewFormCreation={handleNewFormCreation} />
+            }
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-10">
-                {forms.map((form) => (
-                    <FormCard key={form._id} form={form} />
-                ))}
-            </div>
+            { forms.length > 0 && 
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-10">
+                    {forms.map((form) => (
+                        <FormCard key={form._id} form={form} />
+                    ))}
+                </div>
+            }
         </div>
     )
 }
