@@ -52,15 +52,8 @@ function FormCard({ form }: { form: IForm }) {
                             </Button>
                         </Link>
                     )}
-                    {form.status === Status.active && (
+                    {(form.status === Status.active || form.status === Status.ended) && (
                          <Link href={'/admin/' + form._id}>
-                            <Button className="text-xs font-normal h-6 text-black">
-                                Review
-                            </Button>
-                        </Link>
-                    )}
-                    {form.status === Status.ended && (
-                        <Link href={'/admin/' + form._id}>
                             <Button className="text-xs font-normal h-6 text-black">
                                 Review
                             </Button>
