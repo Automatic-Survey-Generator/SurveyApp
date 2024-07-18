@@ -9,14 +9,25 @@ export default function ShortAnswer({block_structure, updateFormDataBlock}: {blo
 
     const [inputValue, setInputValue] = useState('')
 
+    function debounce(func, timeout = 300){
+        let timer;
+        return (...args) => {
+          clearTimeout(timer);
+          timer = setTimeout(() => { func.apply(this, args); }, timeout);
+        };
+      }
+
 
     const onInputChange = (e: any) => {
         setInputValue(e.target.value)
-        updateFormDataBlock({
+        // Debounce
+    
+        debounce(updateFormDataBlock, 500)({
             block_id: block_structure._id,
             block_type: block_structure.block_type,
             answer: e.target.value
         })
+
     }
 
     return (
