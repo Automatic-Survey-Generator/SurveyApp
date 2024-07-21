@@ -22,6 +22,11 @@ const InputComponent: React.FC<{
   );
 });
 
+
+// Add display name to InputComponent
+InputComponent.displayName = 'InputComponent';
+
+
 // FormComponent definition
 const FormComponent: React.FC = () => {
   const [formData, setFormData] = useState([
@@ -81,5 +86,8 @@ const FormComponent: React.FC = () => {
   );
 };
 
+
+// Add display name to FormComponent
+FormComponent.displayName = 'FormComponent';
 
 export default FormComponent;
